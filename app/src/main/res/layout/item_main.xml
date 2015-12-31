@@ -1,0 +1,8 @@
+<com.felipecsl.gifimageview.library.GifImageView
+    android:layout_gravity="center"
+    android:id="@+id/img_home"
+    android:background="#312d3e"
+    android:src="@drawable/ic_launcher"
+    android:layout_width="230dp"
+    android:layout_height="220dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"/>
