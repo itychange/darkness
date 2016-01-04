@@ -1,11 +1,19 @@
-<FrameLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="fragment.fragmentgiftabrobot">
 
+    <TextView
+        android:id="@+id/Intent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Intent"/>
+
     <GridView
+
         android:id="@+id/mlist_robot"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,4 +25,4 @@
         android:stretchMode="columnWidth"
         android:verticalSpacing="2dp"
         />
-</FrameLayout>
+</LinearLayout>

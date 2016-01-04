@@ -3,7 +3,6 @@ package adapter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.util.Log;
 
 import fragment.fragmentdetailtabfullgif;
 import fragment.fragmentdetailtabfullimage;
@@ -36,7 +35,6 @@ public class adapterdetail extends FragmentStatePagerAdapter {
                 fragmentdetailtabfullimage mFragmentdetailtabfullimage = new fragmentdetailtabfullimage(url);
                 return mFragmentdetailtabfullimage;
             }else{
-                Log.i(null,"showsdfffffffffffffffffffff");
                 fragmentdetailtabfullgif mFragmentdetailtabfullgif=new fragmentdetailtabfullgif(url);
                 return  mFragmentdetailtabfullgif;
             }

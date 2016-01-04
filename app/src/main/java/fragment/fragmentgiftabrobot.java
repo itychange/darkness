@@ -2,6 +2,7 @@ package fragment;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -9,7 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.itychange.darkness.InsertandUpdate;
 import com.itychange.darkness.R;
 
 import java.util.ArrayList;
@@ -25,10 +29,10 @@ public class fragmentgiftabrobot extends Fragment {
     private GridView mGridView;
     private ArrayList<data> mArrayList;
     private adapterhome mAdapterhome;
-    private String username="get_all_products.php";
-    private String username_01="drawnew";
-    private String username_02="id_tacgia";
-
+    private String username="get_all_animater_cute.php";
+    private String username_01="gif_animal_cute";
+    private String username_02="thongtin";
+    private TextView txt_intentl;
     public fragmentgiftabrobot() {
         // Required empty public constructor
     }
@@ -41,6 +45,16 @@ public class fragmentgiftabrobot extends Fragment {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_fragmentgiftabrobot, container, false);
         mGridView= (GridView) view.findViewById(R.id.mlist_robot);
+        txt_intentl= (TextView) view.findViewById(R.id.Intent);
+        txt_intentl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(),"gif",Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(getActivity(), InsertandUpdate.class);
+                intent.putExtra("get_all_animater_cute",InsertandUpdate.getKey);
+                startActivity(intent);
+            }
+        });
         mArrayList=new ArrayList<>();
         return view;
     }

@@ -2,6 +2,7 @@ package fragment;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -9,7 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.itychange.darkness.InsertandUpdate;
 import com.itychange.darkness.R;
 
 import java.util.ArrayList;
@@ -36,12 +40,23 @@ public class fragmentmain extends Fragment {
     private ArrayList<data> mList=null;
     private adapterphotoanimater mAdapterphotoanimater;
 
+    private TextView txt;
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_fragmentmain, container, false);
         mGridView= (GridView) view.findViewById(R.id.mlist);
+        txt= (TextView) view.findViewById(R.id.intent);
+        txt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "image", Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(getActivity(), InsertandUpdate.class);
+                intent.putExtra("getallnarutal",InsertandUpdate.getKey);
+                startActivity(intent);
+            }
+        });
         mList=new ArrayList<>();
         return view;
     }
