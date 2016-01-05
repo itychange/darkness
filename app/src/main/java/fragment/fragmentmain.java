@@ -53,7 +53,7 @@ public class fragmentmain extends Fragment {
             public void onClick(View v) {
                 Toast.makeText(getActivity(), "image", Toast.LENGTH_SHORT).show();
                 Intent intent=new Intent(getActivity(), InsertandUpdate.class);
-                intent.putExtra("getallnarutal",InsertandUpdate.getKey);
+                intent.putExtra("image","getKey");
                 startActivity(intent);
             }
         });

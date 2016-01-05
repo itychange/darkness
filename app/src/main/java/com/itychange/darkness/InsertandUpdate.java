@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.felipecsl.gifimageview.library.GifImageView;
 
@@ -33,6 +34,19 @@ public class InsertandUpdate extends AppCompatActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_insertand_update);
+        Intent intent=this.getIntent();
+        String txt=intent.getStringExtra("getKey");
+        Toast.makeText(this,"show"+txt,Toast.LENGTH_SHORT).show();
+//        if(txt.equals("image")){
+//            Toast.makeText(this,"show"+intent.getStringExtra("getKey"),Toast.LENGTH_SHORT).show();
+//
+//        }else if(txt.equals("get_all_animater_cute")){
+//            Toast.makeText(this,"show"+intent.getStringExtra("getKey"),Toast.LENGTH_SHORT).show();
+//
+//        }else if(txt.equals("getallnarutal")){
+//            Toast.makeText(this,"show"+intent.getStringExtra("getKey"),Toast.LENGTH_SHORT).show();
+//
+//        }
         id_baiviet= (EditText) findViewById(R.id.id_baiviet);
         thongtin= (EditText) findViewById(R.id.id_thongtin);
         mGifImageView= (GifImageView) findViewById(R.id.imggif);
@@ -47,18 +61,18 @@ public class InsertandUpdate extends AppCompatActivity implements View.OnClickLi
     @Override
     protected void onStart() {
         super.onStart();
-        Intent intent=this.getIntent();
-        txt_intent=intent.getStringExtra(getKey);
-        if(txt_intent.equals("get_all_products")){
-
-        }
-        else if(txt_intent.equals("get_all_animater_cute")){
-            //gif
-
-        }else if(txt_intent.equals("getallnarutal")){
-
-
-        }
+//        Intent intent=this.getIntent();
+//        txt_intent=intent.getStringExtra("getKey");
+//        if(txt_intent.equals("get_all_products")){
+//
+//        }
+//        else if(txt_intent.equals("get_all_animater_cute")){
+//            //gif
+//
+//        }else if(txt_intent.equals("getallnarutal")){
+//
+//
+//        }
     }
 
     @Override
