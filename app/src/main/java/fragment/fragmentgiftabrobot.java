@@ -29,9 +29,12 @@ public class fragmentgiftabrobot extends Fragment {
     private GridView mGridView;
     private ArrayList<data> mArrayList;
     private adapterhome mAdapterhome;
-    private String username="get_all_animater_cute.php";
-    private String username_01="gif_animal_cute";
-    private String username_02="thongtin";
+//    private String username="get_all_animater_cute.php";
+//    private String username_01="gif_animal_cute";
+//    private String username_02="thongtin";
+private String username="get_all_products.php";
+    private String username_01="drawnew";
+    private String username_02="id_tacgia";
     private TextView txt_intentl;
     public fragmentgiftabrobot() {
         // Required empty public constructor
