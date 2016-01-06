@@ -58,7 +58,21 @@ public class fragmentmain extends Fragment {
             }
         });
         mList=new ArrayList<>();
+
         return view;
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        new network(getActivity(),mGridView,mList, mAdapterphotoanimater,username,username_01,username_02,false).execute();
+        mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                mListener.onFragmentClick(mList.get(position).getUrl(), mList.get(position).getId_tacgia(), false);
+            }
+        });
     }
 
     @Override
@@ -71,16 +85,11 @@ public class fragmentmain extends Fragment {
                     + " must implement OnFragmentClickListener");
         }
     }
+
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        new network(getActivity(),mGridView,mList, mAdapterphotoanimater,username,username_01,username_02,false).execute();
-        mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                mListener.onFragmentClick(mList.get(position).getUrl(),mList.get(position).getTitlte(),false);
-            }
-        });
+
     }
     public interface OnFragmentClickListener {
         void onFragmentClick(String url,String information,boolean check);

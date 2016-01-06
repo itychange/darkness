@@ -32,6 +32,12 @@ public class fragmentdetailtabfullimage extends Fragment {
         View view = inflater.inflate(R.layout.fragment_fragmenttabfullimage, container, false);
         mimg_full= (NetworkImageView) view.findViewById(R.id.full_img);
         imageLoader= AppController.getInstance().getImageLoader();
+        mimg_full.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         return view;
     }
 
@@ -41,4 +47,5 @@ public class fragmentdetailtabfullimage extends Fragment {
         mimg_full.setImageUrl(url,imageLoader);
 
     }
+
 }

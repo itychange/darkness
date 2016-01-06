@@ -23,18 +23,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import adapter.adaptergif;
-import adapter.adapterphotoanimater;
 import util.data;
 
 
-public class network extends AsyncTask<Void, Void, List<data>> {
+public class networkgif extends AsyncTask<Void, Void, List<data>> {
 
 
-        // Get your own user name at http://www.geonames.org/login
+    // Get your own user name at http://www.geonames.org/login
 
-        AndroidHttpClient mClient = AndroidHttpClient.newInstance("");
+    AndroidHttpClient mClient = AndroidHttpClient.newInstance("");
     private GridView girlview;
-    private adapterphotoanimater mMadapter_photo_animater;
     private adaptergif mAdaptergif;
     private ArrayList<data> mList;
     private String username;
@@ -43,49 +41,46 @@ public class network extends AsyncTask<Void, Void, List<data>> {
     private static final String URL = "http://themylifes.com/android_connect_drawness/";
 
     Context mContext;
-    private boolean check=false;
-    public network(Context mContext,GridView girlview,ArrayList<data> mDatas, adapterphotoanimater madapter_photo_animater,String username,String username_01,String username_02,boolean check){
-        this.mContext=mContext;
-        this.girlview=girlview;
-        this.mMadapter_photo_animater =madapter_photo_animater;
-        this.mList=mDatas;
-        this.username=username;
-        this.username_01=username_01;
-        this.username_02=username_02;
-        this.check=check;
-        Toast.makeText(mContext,"show data:"+check,Toast.LENGTH_SHORT).show();
+    private boolean check = false;
+
+    public networkgif(Context mContext, GridView girlview, ArrayList<data> mDatas, adaptergif mAdaptergif, String username, String username_01, String username_02, boolean check) {
+        this.mContext = mContext;
+        this.girlview = girlview;
+        this.mAdaptergif = mAdaptergif;
+        this.mList = mDatas;
+        this.username = username;
+        this.username_01 = username_01;
+        this.username_02 = username_02;
+        this.check = check;
+        Toast.makeText(mContext, "show data:" + check, Toast.LENGTH_SHORT).show();
 
     }
-        @Override
-        protected List<data> doInBackground(Void... params) {
-            HttpGet request = new HttpGet(URL+username);
-            JSONResponseHandler responseHandler = new JSONResponseHandler();
-            try {
-                return mClient.execute(request, responseHandler);
-            } catch (ClientProtocolException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return null;
+
+    @Override
+    protected List<data> doInBackground(Void... params) {
+        HttpGet request = new HttpGet(URL + username);
+        JSONResponseHandler responseHandler = new JSONResponseHandler();
+        try {
+            return mClient.execute(request, responseHandler);
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        return null;
+    }
 
 
-        @Override
-        protected void onPostExecute(List<data> result) {
-            if (null != mClient)
-                mClient.close();
-          //  if(check==false) {
+    @Override
+    protected void onPostExecute(List<data> result) {
+        if (null != mClient)
+            mClient.close();
 
-                mMadapter_photo_animater = new adapterphotoanimater(mContext, result);
-                girlview.setAdapter(mMadapter_photo_animater);
-//            }else{
-//                Toast.makeText(mContext,"show 2ưssss:"+check,Toast.LENGTH_SHORT).show();
-//
-//
-//            }
+        mAdaptergif =new adaptergif(mContext,result);
+                girlview.setAdapter(mAdaptergif);
 
-        }
+
+    }
 
     private class JSONResponseHandler implements ResponseHandler<List<data>> {
 

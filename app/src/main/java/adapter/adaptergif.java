@@ -15,12 +15,12 @@ import java.util.List;
 
 import util.data;
 
-public class adapterhome extends BaseAdapter {
+public class adaptergif extends BaseAdapter {
     public Context mContext;
     private LayoutInflater inflater;
     private List<data> movieItems;
     private boolean shouldBlur = false;
-    public adapterhome(Context mContext, List<data> movieItems) {
+    public adaptergif(Context mContext, List<data> movieItems) {
         this.mContext = mContext;
         this.movieItems = movieItems;
     }

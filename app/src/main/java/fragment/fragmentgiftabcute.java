@@ -18,8 +18,8 @@ import com.itychange.darkness.R;
 
 import java.util.ArrayList;
 
-import adapter.adapterhome;
-import network.network;
+import adapter.adaptergif;
+import network.networkgif;
 import util.data;
 
 /**
@@ -29,7 +29,7 @@ public class fragmentgiftabcute extends Fragment {
 
     private GridView mGridView;
     private ArrayList<data> mArrayList;
-    private adapterhome mAdapterhome;
+    private adaptergif mAdaptergif;
     private String username="get_all_products.php";
     private String username_01="drawnew";
     private String username_02="id_tacgia";
@@ -73,7 +73,7 @@ public class fragmentgiftabcute extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        new network(getActivity(),mGridView,mArrayList, mAdapterhome,username,username_01,username_02,true).execute();
+        new networkgif(getActivity(),mGridView,mArrayList, mAdaptergif,username,username_01,username_02,true).execute();
         mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

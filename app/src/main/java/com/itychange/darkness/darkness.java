@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -64,7 +65,12 @@ public class darkness extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            Toast.makeText(this,"show"+getSupportFragmentManager().getBackStackEntryCount(),Toast.LENGTH_SHORT).show();
+            if (getSupportFragmentManager().getBackStackEntryCount() == 1) {
+                finish();
+            }else{
+                super.onBackPressed();
+            }
         }
     }
 
@@ -148,5 +154,8 @@ public class darkness extends AppCompatActivity
     public void onFragmentClickTabRoBot(String url, String information) {
         transactionFragment(new fragmentdetail(url,information,true));
 
+    }
+    public interface OnBackPressedListener {
+        void doBack();
     }
 }

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.itychange.darkness.R;
 
@@ -35,6 +36,8 @@ public class fragmentdetailtabinformation extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+        Toast.makeText(getActivity(),"show infor"+infor,Toast.LENGTH_SHORT).show();
         txt_infor.setText(infor);
     }
 }
