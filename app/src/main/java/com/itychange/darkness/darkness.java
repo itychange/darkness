@@ -12,7 +12,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,7 +23,7 @@ import fragment.fragmentgiftabrobot;
 import fragment.fragmentmain;
 
 public class darkness extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, fragmentmain.OnFragmentClickListener, fragmentgiftabcute.OnFragmentClickListener_tabcute, fragmentgiftabrobot.OnFragmentClickListener_tabrobot{
+        implements NavigationView.OnNavigationItemSelectedListener, fragmentmain.OnFragmentClickListener, fragmentgiftabcute.OnFragmentClickListener_tabcute, fragmentgiftabrobot.OnFragmentClickListener_tabrobot {
 
 
     public static final Map<String, String> FRAGMENT_TAG = new HashMap<>();
@@ -36,7 +35,6 @@ public class darkness extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
-
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -52,23 +50,14 @@ public class darkness extends AppCompatActivity
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-
-
-    }
-
-
-    @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            Toast.makeText(this,"show"+getSupportFragmentManager().getBackStackEntryCount(),Toast.LENGTH_SHORT).show();
-            if (getSupportFragmentManager().getBackStackEntryCount() == 1) {
+            if (getSupportFragmentManager().getBackStackEntryCount() == 1) {//fragment main
                 finish();
-            }else{
+            } else {
                 super.onBackPressed();
             }
         }
@@ -98,21 +87,32 @@ public class darkness extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        String currentFragment = this.getSupportFragmentManager().findFragmentById(R.id.content).getClass().getSimpleName();
 
-        if (id == R.id.nav_camara) {
-            // Handle the camera action
-            transactionFragment(new fragmentgifanimater());
-
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
+        if (id == R.id.nav_natural) {
+            if (!fragmentmain.class.getSimpleName().equals(currentFragment)) {
+                transactionFragment(new fragmentmain());
+            }
+        } else if (id == R.id.nav_gif) {
+            if (!fragmentgifanimater.class.getSimpleName().equals(currentFragment)) {
+                transactionFragment(new fragmentgifanimater());
+            }
+        } else if (id == R.id.nav_animal) {
+            if (!fragmentmain.class.getSimpleName().equals(currentFragment)) {
+                transactionFragment(new fragmentmain());
+            }
         } else if (id == R.id.nav_manage) {
-
+            if (!fragmentmain.class.getSimpleName().equals(currentFragment)) {
+                transactionFragment(new fragmentmain());
+            }
         } else if (id == R.id.nav_share) {
-
+            if (!fragmentmain.class.getSimpleName().equals(currentFragment)) {
+                transactionFragment(new fragmentmain());
+            }
         } else if (id == R.id.nav_send) {
-
+            if (!fragmentmain.class.getSimpleName().equals(currentFragment)) {
+                transactionFragment(new fragmentmain());
+            }
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -141,20 +141,21 @@ public class darkness extends AppCompatActivity
     }
 
     @Override
-    public void onFragmentClick(String url, String information,boolean check) {
-        transactionFragment(new fragmentdetail(url, information,false));
+    public void onFragmentClick(String url, String information, boolean check) {
+        transactionFragment(new fragmentdetail(url, information, false));
     }
 
     @Override
     public void onFragmentClick(String url, String information) {
-        transactionFragment(new fragmentdetail(url,information,true));
+        transactionFragment(new fragmentdetail(url, information, true));
     }
 
     @Override
     public void onFragmentClickTabRoBot(String url, String information) {
-        transactionFragment(new fragmentdetail(url,information,true));
+        transactionFragment(new fragmentdetail(url, information, true));
 
     }
+
     public interface OnBackPressedListener {
         void doBack();
     }
