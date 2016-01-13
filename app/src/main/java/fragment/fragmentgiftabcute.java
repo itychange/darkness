@@ -2,7 +2,10 @@ package fragment;
 
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -73,13 +76,25 @@ public class fragmentgiftabcute extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        new networkgif(getActivity(),mGridView,mArrayList, mAdaptergif,username,username_01,username_02,true).execute();
-        mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                mListener.onFragmentClick(mArrayList.get(position).getUrl(), mArrayList.get(position).getTitlte());
-            }
-        });
+
+        ConnectivityManager conMgr = (ConnectivityManager)getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        if ( conMgr.getNetworkInfo(0).getState() == NetworkInfo.State.CONNECTED
+                || conMgr.getNetworkInfo(1).getState() == NetworkInfo.State.CONNECTING ) {
+                Toast.makeText(getActivity(),"Please check internet",Toast.LENGTH_SHORT).show();
+        }
+        else if ( conMgr.getNetworkInfo(0).getState() == NetworkInfo.State.DISCONNECTED
+                || conMgr.getNetworkInfo(1).getState() == NetworkInfo.State.DISCONNECTED) {
+
+            new networkgif(getActivity(),mGridView,mArrayList, mAdaptergif,username,username_01,username_02,true).execute();
+            mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    mListener.onFragmentClick(mArrayList.get(position).getUrl(), mArrayList.get(position).getTitlte());
+                }
+            });
+            //transactionFragment(new fragmentmain());
+        }
     }
     public interface OnFragmentClickListener_tabcute {
         void onFragmentClick(String url,String information);

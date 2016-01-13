@@ -1,5 +1,8 @@
 package com.itychange.darkness;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -10,8 +13,9 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,12 +32,13 @@ public class darkness extends AppCompatActivity
 
     public static final Map<String, String> FRAGMENT_TAG = new HashMap<>();
 
+    private TextView txt_connection;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_darkness);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-
+        txt_connection= (TextView) findViewById(R.id.checkinternet);
         setSupportActionBar(toolbar);
 
 
@@ -46,7 +51,7 @@ public class darkness extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         putFragment();
-        transactionFragment(new fragmentmain());
+
     }
 
     @Override
@@ -64,23 +69,22 @@ public class darkness extends AppCompatActivity
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.darkness, menu);
-        return true;
-    }
+    protected void onResume() {
+        super.onResume();
+        ConnectivityManager conMgr = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
+        if ( conMgr.getNetworkInfo(0).getState() == NetworkInfo.State.CONNECTED
+                || conMgr.getNetworkInfo(1).getState() == NetworkInfo.State.CONNECTING ) {
+            txt_connection.setVisibility(View.VISIBLE);
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
         }
-
-        return super.onOptionsItemSelected(item);
+        else if ( conMgr.getNetworkInfo(0).getState() == NetworkInfo.State.DISCONNECTED
+                || conMgr.getNetworkInfo(1).getState() == NetworkInfo.State.DISCONNECTED) {
+            txt_connection.setVisibility(View.GONE);
+            transactionFragment(new fragmentmain());
+        }
     }
+
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override

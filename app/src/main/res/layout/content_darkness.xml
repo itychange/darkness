@@ -9,6 +9,14 @@
     tools:context=".darkness"
     tools:showIn="@layout/app_bar_darkness">
 
+    <TextView
+        android:id="@+id/checkinternet"
+        android:textColor="@color/colorPrimary"
+        android:textSize="50dp"
+        android:gravity="center"
+        android:text="Please check Internet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
     <FrameLayout
         android:id="@+id/content"
         android:layout_width="match_parent"

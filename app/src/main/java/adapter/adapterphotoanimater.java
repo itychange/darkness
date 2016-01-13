@@ -31,7 +31,11 @@ public class adapterphotoanimater extends BaseAdapter {
     @Override
     public int getCount() {
 
-        return movieItems.size();
+         if(movieItems.size()==0){
+             return 0;
+         }else{
+             return movieItems.size();
+         }
     }
 
     @Override
